@@ -126,6 +126,7 @@ export default function App() {
         <div>
           <label htmlFor="FirstName">First name</label>
           <input
+            id="FirstName"
             className="textfield"
             value={firstName}
             onChange={(event) => setFirstName(event.currentTarget.value)}
@@ -137,6 +138,7 @@ export default function App() {
         <div>
           <label htmlFor="LastName">Last name</label>
           <input
+            id="LastName"
             className="textfield"
             value={lastName}
             onChange={(event) => setLastName(event.currentTarget.value)}
