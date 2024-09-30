@@ -124,27 +124,29 @@ export default function App() {
       <h1>Guest List</h1>
       <div className="form-container">
         <div>
-          <label htmlFor="first-name">First name</label>
-          <input
-            id="first-name"
-            className="textfield"
-            value={firstName}
-            onChange={(event) => setFirstName(event.currentTarget.value)}
-            onKeyDown={handleKeyDown}
-            disabled={isLoading}
-          />{' '}
+          <label>
+            First name
+            <input
+              className="textfield"
+              value={firstName}
+              onChange={(event) => setFirstName(event.currentTarget.value)}
+              onKeyDown={handleKeyDown}
+              disabled={isLoading}
+            />
+          </label>{' '}
         </div>
 
         <div>
-          <label htmlFor="last-name">Last name</label>
-          <input
-            id="last-name"
-            className="textfield"
-            value={lastName}
-            onChange={(event) => setLastName(event.currentTarget.value)}
-            onKeyDown={handleKeyDown}
-            disabled={isLoading}
-          />{' '}
+          <label>
+            Last name
+            <input
+              className="textfield"
+              value={lastName}
+              onChange={(event) => setLastName(event.currentTarget.value)}
+              onKeyDown={handleKeyDown}
+              disabled={isLoading}
+            />
+          </label>{' '}
         </div>
 
         {guests.map((guest) => {
