@@ -22,6 +22,7 @@ export default function App() {
 
       // Update local state
       const newGuests = guests.filter((guest) => guest.id !== id);
+      console.log('Updated guests after deletion:', newGuests);
       setGuests(newGuests);
     } catch (error) {
       console.log(error);
@@ -60,6 +61,10 @@ export default function App() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    console.log('Guests updated:', guests);
+  }, [guests]);
 
   const handleKeyDown = async (event) => {
     if (event.key === 'Enter') {
@@ -160,7 +165,7 @@ export default function App() {
                 <input
                   type="checkbox"
                   id="attending"
-                  aria-label={`Remove ${guest.firstName} ${guest.lastName} attending status`}
+                  aria-label={`${guest.firstName} ${guest.lastName} attending status`}
                   checked={guest.attending}
                   onChange={() => handleClickAttend(guest.id)}
                   disabled={isLoading}
