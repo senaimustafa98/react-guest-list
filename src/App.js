@@ -62,10 +62,6 @@ export default function App() {
     }
   };
 
-  useEffect(() => {
-    console.log('Guests updated:', guests);
-  }, [guests]);
-
   const handleKeyDown = async (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -138,7 +134,7 @@ export default function App() {
               onKeyDown={handleKeyDown}
               disabled={isLoading}
             />
-          </label>{' '}
+          </label>
         </div>
 
         <div>
@@ -151,7 +147,7 @@ export default function App() {
               onKeyDown={handleKeyDown}
               disabled={isLoading}
             />
-          </label>{' '}
+          </label>
         </div>
 
         {guests.map((guest) => {
@@ -164,7 +160,7 @@ export default function App() {
               <div className="checkbox">
                 <input
                   type="checkbox"
-                  id="attending"
+                  id={`attending-${guest.id}`}
                   aria-label={`${guest.firstName} ${guest.lastName} attending status`}
                   checked={guest.attending}
                   onChange={() => handleClickAttend(guest.id)}
