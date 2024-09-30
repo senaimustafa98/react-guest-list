@@ -121,36 +121,38 @@ export default function App() {
 
   return (
     <>
-      <h1>Guestd List</h1>
-      <div>
+      <h1>Guest List</h1>
+      <div className="form-container">
+        <div>
         <label htmlFor="FirstName">First name</label>
         <input
+          className='textfield'
           value={firstName}
           onChange={(event) => setFirstName(event.currentTarget.value)}
           onKeyDown={handleKeyDown}
           disabled={isLoading}
         />{' '}
-        <br />
+        </div>
+
+        <div>
         <label htmlFor="LastName">Last name</label>
         <input
+          className='textfield'
           value={lastName}
           onChange={(event) => setLastName(event.currentTarget.value)}
           onKeyDown={handleKeyDown}
           disabled={isLoading}
         />{' '}
-        <br />
-        <div>
+        </div>
+
+
           {guests.map((guest) => {
             return (
+              <div className='outputContainer'>
               <div key={`guest-${guest.id}`} data-test-id="guest">
-                {guest.firstName} {guest.lastName}
-                <button
-                  aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
-                  onClick={() => handleClickDelete(guest.id)}
-                  disabled={isLoading}
-                >
-                  Remove{' '}
-                </button>
+                {guest.firstName} {guest.lastName} </div>
+
+                <div className='checkbox'>
                 <input
                   type="checkbox"
                   id="attending"
@@ -159,11 +161,20 @@ export default function App() {
                   onChange={() => handleClickAttend(guest.id)}
                   disabled={isLoading}
                 />
+                <span className="emoji">😢</span>
+               </div>
                 <label htmlFor="attending">attending</label>
+                <button
+                  aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
+                  onClick={() => handleClickDelete(guest.id)}
+                  disabled={isLoading}
+                >
+                  Remove{' '}
+                </button>
               </div>
             );
           })}
-        </div>
+
       </div>
     </>
   );
