@@ -124,7 +124,7 @@ export default function App() {
       <h1>Guest List</h1>
       <div className="form-container">
         <div>
-          <label htmlFor="FirstName">First name</label>
+          <label htmlFor="Firstname">First name</label>
           <input
             id="FirstName"
             className="textfield"
@@ -136,7 +136,7 @@ export default function App() {
         </div>
 
         <div>
-          <label htmlFor="LastName">Last name</label>
+          <label htmlFor="Lastname">Last name</label>
           <input
             id="LastName"
             className="textfield"
