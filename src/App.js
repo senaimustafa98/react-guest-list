@@ -11,7 +11,7 @@ export default function App() {
 
   const handleClickDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/guests/${id}`, {
+      const response = await fetch(`https://ml6htv-4000.csb.app/guests/${id}`, {
         method: 'DELETE',
       });
 
@@ -21,7 +21,7 @@ export default function App() {
         return; // Exit if there's an error
       }
 
-      // If successful, update local state
+      // Update local state
       const newGuests = guests.filter((guest) => guest.id !== id);
       setGuests(newGuests);
     } catch (error) {
@@ -29,14 +29,41 @@ export default function App() {
     }
   };
 
-const handleClickAttend = (id) => {
-  const newGuests = guests.map((guest) => {
+const handleClickAttend = async (id) => {
+  // Find the current guest
+  const currentGuest = guests.find(guest => guest.id === id);
+  const newAttendanceStatus = !currentGuest.attending; // Toggle attendance status
+
+  // Immediately update the local state
+  const updatedGuests = guests.map((guest) => {
     if (guest.id === id) {
-      return { ...guest, attending: !guest.attending };  // Toggle attending status
+      return { ...guest, attending: newAttendanceStatus }; // Update local state
     }
     return guest;
   });
-  setGuests(newGuests);
+
+  setGuests(updatedGuests);
+
+
+try {
+  const response = await fetch(`https://ml6htv-4000.csb.app/guests/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({attending: newAttendanceStatus}),
+
+
+    //body: JSON.stringify({ attending: updatedGuest.attending }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    console.error('Error updating attending status:', errorData);
+  }
+} catch (error) {
+  console.log(error);
+}
 };
 
 
@@ -50,27 +77,23 @@ const handleKeyDown = async (event) => {
       lastName: lastName,
     };
 
-    if (!newGuest.firstName || !newGuest.lastName) {
-      console.error("First name and last name are required.");
-      return; // Exit early if names are empty
-    }
-
     try {
-      const response = await fetch('http://localhost:4000/guests', {
+      const response = await fetch('https://ml6htv-4000.csb.app/guests', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+
         body: JSON.stringify(newGuest), // Send newGuest data as JSON
       });
 
       if (!response.ok) {
-        const errorData = await response.json(); // Get the error message from the API
+        const errorData = await response.json(); // Catch error from API
         console.error('Error:', errorData);
-        return; // Exit if the response is not OK
+        return;
       }
 
-      const addedGuest = await response.json(); // Read the response only once
+      const addedGuest = await response.json();
       setGuests([...guests, addedGuest]); // Add the new guest to state
 
       setFirstName(''); // Clear input fields
@@ -84,11 +107,11 @@ const handleKeyDown = async (event) => {
 
   useEffect(() => {
     async function firstRenderFetch() {
-      const response = await fetch('http://localhost:4000/guests', {
+      const response = await fetch('https://ml6htv-4000.csb.app/guests', {
         method: 'GET',
       });
       const data = await response.json();
-      console.log("Fetched guests:", data);
+
 
       setGuests(data);
       setIsLoading(false);
