@@ -154,21 +154,20 @@ export default function App() {
           return (
             <div className="outputContainer" key={`guest-${guest.id}`}>
               <div key={`guest-${guest.id}`} data-test-id="guest">
-                {guest.firstName} {guest.lastName}{' '}
+                {guest.firstName} {guest.lastName}
               </div>
 
-              <div className="checkbox">
+              <label className="checkbox">
                 <input
                   type="checkbox"
-                  id={`attending-${guest.id}`}
                   aria-label={`${guest.firstName} ${guest.lastName} attending status`}
                   checked={guest.attending}
                   onChange={() => handleClickAttend(guest.id)}
                   disabled={isLoading}
                 />
-                <span className="emoji">😢</span>
-              </div>
-              <label htmlFor="attending">attending</label>
+                attending
+              </label>
+
               <button
                 aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
                 onClick={() => handleClickDelete(guest.id)}
