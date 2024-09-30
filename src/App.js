@@ -22,7 +22,6 @@ export default function App() {
 
       // Update local state
       const newGuests = guests.filter((guest) => guest.id !== id);
-      console.log('Updated guests after deletion:', newGuests);
       setGuests(newGuests);
     } catch (error) {
       console.log(error);
@@ -55,15 +54,13 @@ export default function App() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Error updating attending status:', errorData);
+        console.error('Error updating attendance:', errorData);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    console.log('Guests updated:', guests); // Logs changes in guests array
-  }, [guests]);
+  useEffect(() => {}, [guests]);
 
   const handleKeyDown = async (event) => {
     if (event.key === 'Enter') {
