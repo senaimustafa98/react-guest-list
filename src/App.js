@@ -61,6 +61,9 @@ export default function App() {
       console.log(error);
     }
   };
+  useEffect(() => {
+    console.log('Guests updated:', guests); // Logs changes in guests array
+  }, [guests]);
 
   const handleKeyDown = async (event) => {
     if (event.key === 'Enter') {
