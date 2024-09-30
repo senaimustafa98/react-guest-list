@@ -152,7 +152,11 @@ export default function App() {
 
         {guests.map((guest) => {
           return (
-            <div className="outputContainer" key={`guest-${guest.id}`}>
+            <div
+              className="outputContainer"
+              key={`guest-${guest.id}`}
+              data-test-id="guest"
+            >
               <div key={`guest-${guest.id}`} data-test-id="guest">
                 {guest.firstName} {guest.lastName}
               </div>
