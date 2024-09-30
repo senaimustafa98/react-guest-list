@@ -124,35 +124,35 @@ export default function App() {
       <h1>Guest List</h1>
       <div className="form-container">
         <div>
-        <label htmlFor="FirstName">First name</label>
-        <input
-          className='textfield'
-          value={firstName}
-          onChange={(event) => setFirstName(event.currentTarget.value)}
-          onKeyDown={handleKeyDown}
-          disabled={isLoading}
-        />{' '}
+          <label htmlFor="FirstName">First name</label>
+          <input
+            className="textfield"
+            value={firstName}
+            onChange={(event) => setFirstName(event.currentTarget.value)}
+            onKeyDown={handleKeyDown}
+            disabled={isLoading}
+          />{' '}
         </div>
 
         <div>
-        <label htmlFor="LastName">Last name</label>
-        <input
-          className='textfield'
-          value={lastName}
-          onChange={(event) => setLastName(event.currentTarget.value)}
-          onKeyDown={handleKeyDown}
-          disabled={isLoading}
-        />{' '}
+          <label htmlFor="LastName">Last name</label>
+          <input
+            className="textfield"
+            value={lastName}
+            onChange={(event) => setLastName(event.currentTarget.value)}
+            onKeyDown={handleKeyDown}
+            disabled={isLoading}
+          />{' '}
         </div>
 
-
-          {guests.map((guest) => {
-            return (
-              <div className='outputContainer'>
+        {guests.map((guest) => {
+          return (
+            <div className="outputContainer" key={`guest-${guest.id}`}>
               <div key={`guest-${guest.id}`} data-test-id="guest">
-                {guest.firstName} {guest.lastName} </div>
+                {guest.firstName} {guest.lastName}{' '}
+              </div>
 
-                <div className='checkbox'>
+              <div className="checkbox">
                 <input
                   type="checkbox"
                   id="attending"
@@ -162,19 +162,18 @@ export default function App() {
                   disabled={isLoading}
                 />
                 <span className="emoji">😢</span>
-               </div>
-                <label htmlFor="attending">attending</label>
-                <button
-                  aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
-                  onClick={() => handleClickDelete(guest.id)}
-                  disabled={isLoading}
-                >
-                  Remove{' '}
-                </button>
               </div>
-            );
-          })}
-
+              <label htmlFor="attending">attending</label>
+              <button
+                aria-label={`Remove ${guest.firstName} ${guest.lastName}`}
+                onClick={() => handleClickDelete(guest.id)}
+                disabled={isLoading}
+              >
+                Remove{' '}
+              </button>
+            </div>
+          );
+        })}
       </div>
     </>
   );
