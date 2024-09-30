@@ -171,7 +171,7 @@ export default function App() {
                 onClick={() => handleClickDelete(guest.id)}
                 disabled={isLoading}
               >
-                Remove{' '}
+                Remove
               </button>
             </div>
           );
