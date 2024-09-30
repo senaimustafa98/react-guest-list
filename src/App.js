@@ -124,9 +124,9 @@ export default function App() {
       <h1>Guest List</h1>
       <div className="form-container">
         <div>
-          <label htmlFor="Firstname">First name</label>
+          <label htmlFor="first-name">First name</label>
           <input
-            id="FirstName"
+            id="first-name"
             className="textfield"
             value={firstName}
             onChange={(event) => setFirstName(event.currentTarget.value)}
@@ -136,9 +136,9 @@ export default function App() {
         </div>
 
         <div>
-          <label htmlFor="Lastname">Last name</label>
+          <label htmlFor="last-name">Last name</label>
           <input
-            id="LastName"
+            id="last-name"
             className="textfield"
             value={lastName}
             onChange={(event) => setLastName(event.currentTarget.value)}
