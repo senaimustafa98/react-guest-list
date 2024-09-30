@@ -157,7 +157,7 @@ export default function App() {
               key={`guest-${guest.id}`}
               data-test-id="guest"
             >
-              <div key={`guest-${guest.id}`} data-test-id="guest">
+              <div key={`guest-${guest.id}`}>
                 {guest.firstName} {guest.lastName}
               </div>
 
